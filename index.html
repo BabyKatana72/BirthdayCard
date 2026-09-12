@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 30th Birthday, Tamara! 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #FFB6C1;
+    --pink-dark: #FF69B4;
+    --lavender: #E6E6FA;
+    --lavender-dark: #D8BFD8;
+    --mint: #B2DFDB;
+    --peach: #FFDAB9;
+    --cream: #FFF8F0;
+    --gold: #FFD700;
+    --text: #5D4E6D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #FFE4EC 0%, #FFF0F5 25%, #F3E5F5 50%, #E8F5E9 75%, #FFF8E1 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text);
+  }
+
+  /* Floating Background Elements */
+  .floating-elements {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .float-item {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-20vh) rotate(720deg) scale(1.2); opacity: 0; }
+  }
+
+  /* Confetti Canvas */
+  #confetti-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Main Content */
+  .container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+  }
+
+  /* Hero Card */
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 32px;
+    padding: 3rem 2.5rem;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 
+      0 20px 60px rgba(255, 182, 193, 0.3),
+      0 8px 24px rgba(216, 191, 216, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    animation: cardBounce 0.8s ease-out;
+  }
+
+  @keyframes cardBounce {
+    0% { transform: scale(0.8) translateY(40px); opacity: 0; }
+    60% { transform: scale(1.02) translateY(-5px); opacity: 1; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .birthday-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+    color: white;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.2rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .card h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.2rem;
+    background: linear-gradient(135deg, #FF69B4, #9C27B0, #FF69B4);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .age-highlight {
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), #FFA500, var(--gold));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 2s ease infinite;
+    line-height: 1;
+    margin: 0.5rem 0;
+    text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .age-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--pink-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pink), var(--lavender), var(--mint));
+    border-radius: 2px;
+    margin: 1.2rem auto;
+  }
+
+  .message {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .message .highlight {
+    font-weight: 700;
+    color: var(--pink-dark);
+  }
+
+  .childhood-note {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(230, 230, 250, 0.15));
+    border-radius: 20px;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    border: 2px dashed rgba(255, 105, 180, 0.3);
+  }
+
+  .childhood-note p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .childhood-note .emoji-row {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--pink-dark);
+    margin-top: 1.5rem;
+  }
+
+  .signature-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.3rem;
+  }
+
+  /* CTA Button */
+  .cta-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.9rem 2.2rem;
+    background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(255, 105, 180, 0.4);
+    text-decoration: none;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(255, 105, 180, 0.5);
+  }
+
+  .cta-button:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Photo Placeholder */
+  .photo-frame {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender), var(--mint));
+    padding: 4px;
+    margin: 0 auto 1.5rem;
+    animation: photoGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes photoGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 182, 193, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(255, 105, 180, 0.6); }
+  }
+
+  .photo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: rgba(93, 78, 109, 0.5);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .card { padding: 2rem 1.5rem; border-radius: 24px; }
+    .card h1 { font-size: 2.4rem; }
+    .age-highlight { font-size: 3.8rem; }
+    .photo-frame { width: 110px; height: 110px; }
+    .photo-inner { font-size: 2.8rem; }
+  }
+
+  /* Reveal Animation Classes */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Sparkle effect on click */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 100;
+    animation: sparkleAnim 0.8s ease-out forwards;
+  }
+
+  @keyframes sparkleAnim {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating Background Elements -->
+<div class="floating-elements" id="floatingElements"></div>
+
+<!-- Confetti Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="card">
+    <div class="photo-frame">
+      <div class="photo-inner">🎀</div>
+    </div>
+
+    <div class="birthday-badge">✨ It's Your Special Day! ✨</div>
+
+    <h1>Happy Birthday,<br>Tamara!</h1>
+
+    <div class="age-highlight">30</div>
+    <div class="age-label">years of being absolutely amazing</div>
+
+    <div class="divider"></div>
+
+    <div class="message">
+      <p>Dear <span class="highlight">Tamara Priskila Yawan</span>,</p>
+      <p style="margin-top: 0.8rem;">
+        Thirty looks incredible on you! 🌸 Another year of laughter, dreams, and all the beautiful things you bring into the world.
+      </p>
+    </div>
+
+    <div class="childhood-note">
+      <div class="emoji-row">🧸 🌈 💖 🎂 🎈</div>
+      <p>
+        From playing together as kids to chasing our dreams as adults — I'm so grateful our paths crossed all those years ago. Here's to a lifetime more of adventures together!
+      </p>
+    </div>
+
+    <div class="message">
+      <p>May this year bring you everything your heart desires and more. You deserve all the happiness in the world! 🌷</p>
+    </div>
+
+    <div class="signature">With all my love,</div>
+    <div class="signature-name">Your Best Friend 💕</div>
+
+    <button class="cta-button" id="confettiBtn">🎉 Celebrate! 🎉</button>
+  </div>
+
+  <div class="footer">Made with 💖 for Tamara's 30th</div>
+</div>
+
+<script>
+// ========== FLOATING ELEMENTS ==========
+const floatingContainer = document.getElementById('floatingElements');
+const floatEmojis = ['🌸', '💖', '⭐', '🎀', '🌟', '💕', '🦋', '🌷', '✨', '🎈', '💫', '🌺'];
+
+function createFloatingElement() {
+  const el = document.createElement('div');
+  el.className = 'float-item';
+  el.textContent = floatEmojis[Math.floor(Math.random() * floatEmojis.length)];
+  el.style.left = Math.random() * 100 + '%';
+  el.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
+  el.style.animationDuration = (8 + Math.random() * 12) + 's';
+  el.style.animationDelay = Math.random() * 2 + 's';
+  floatingContainer.appendChild(el);
+
+  setTimeout(() => el.remove(), 20000);
+}
+
+// Create initial batch
+for (let i = 0; i < 15; i++) {
+  setTimeout(createFloatingElement, i * 300);
+}
+
+// Keep creating
+setInterval(createFloatingElement, 800);
+
+// ========== CONFETTI SYSTEM ==========
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let confettiPieces = [];
+let animationId;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class ConfettiPiece {
+  constructor(x, y, burst = false) {
+    this.x = x !== undefined ? x : Math.random() * canvas.width;
+    this.y = y !== undefined ? y : -20;
+    this.size = 4 + Math.random() * 8;
+    this.speedY = burst ? -(5 + Math.random() * 10) : 1.5 + Math.random() * 3;
+    this.speedX = burst ? (Math.random() - 0.5) * 12 : (Math.random() - 0.5) * 2;
+    this.rotation = Math.random() * 360;
+    this.rotationSpeed = (Math.random() - 0.5) * 10;
+    this.colors = ['#FFB6C1', '#FF69B4', '#E6E6FA', '#D8BFD8', '#B2DFDB', '#FFDAB9', '#FFD700', '#FF6B6B', '#A8E6CF', '#FDCFE8'];
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.gravity = 0.05 + Math.random() * 0.03;
+    this.opacity = 1;
+    this.decay = 0.003 + Math.random() * 0.002;
+    this.burst = burst;
+  }
+
+  update() {
+    this.y += this.speedY;
+    this.x += this.speedX;
+    this.rotation += this.rotationSpeed;
+    this.speedY += this.gravity;
+    this.opacity -= this.decay;
+
+    if (this.burst) {
+      this.speedX *= 0.98;
+    }
+  }
+
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate((this.rotation * Math.PI) / 180);
+    ctx.globalAlpha = Math.max(0, this.opacity);
+    ctx.fillStyle = this.color;
+
+    // Different shapes
+    const shape = Math.floor(Math.random() * 3);
+    if (shape === 0) {
+      // Circle
+      ctx.beginPath();
+      ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (shape === 1) {
+      // Square
+      ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+    } else {
+      // Star/heart approximation
+      ctx.beginPath();
+      ctx.moveTo(0, -this.size / 2);
+      ctx.lineTo(this.size / 2, this.size / 2);
+      ctx.lineTo(-this.size / 2, this.size / 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+
+  isDead() {
+    return this.opacity <= 0 || this.y > canvas.height + 50;
+  }
+}
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  confettiPieces.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  confettiPieces = confettiPieces.filter(p => !p.isDead());
+
+  if (confettiPieces.length > 0) {
+    animationId = requestAnimationFrame(animateConfetti);
+  }
+}
+
+function startConfetti() {
+  // Add ambient confetti
+  setInterval(() => {
+    if (confettiPieces.length < 100) {
+      confettiPieces.push(new ConfettiPiece());
+      if (!animationId) animateConfetti();
+    }
+  }, 200);
+}
+
+function burstConfetti(x, y) {
+  for (let i = 0; i < 60; i++) {
+    confettiPieces.push(new ConfettiPiece(x, y, true));
+  }
+  if (!animationId) animateConfetti();
+}
+
+// Initial burst on load
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    burstConfetti(canvas.width / 2, canvas.height / 2);
+    startConfetti();
+  }, 500);
+});
+
+// Button click
+document.getElementById('confettiBtn').addEventListener('click', (e) => {
+  const rect = e.target.getBoundingClientRect();
+  burstConfetti(rect.left + rect.width / 2, rect.top);
+});
+
+// Click anywhere for sparkles
+document.addEventListener('click', (e) => {
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  sparkle.textContent = '✨';
+  sparkle.style.left = e.clientX - 15 + 'px';
+  sparkle.style.top = e.clientY - 15 + 'px';
+  sparkle.style.fontSize = '1.5rem';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 800);
+});
+
+// ========== SCROLL REVEAL ==========
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
