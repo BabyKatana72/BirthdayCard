@@ -533,6 +533,8 @@ function animateConfetti() {
 
   if (confettiPieces.length > 0) {
     animationId = requestAnimationFrame(animateConfetti);
+  } else {
+    animationId = null;
   }
 }
 
