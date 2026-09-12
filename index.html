@@ -461,7 +461,7 @@ class ConfettiPiece {
   constructor(x, y, burst = false) {
     this.x = x !== undefined ? x : Math.random() * canvas.width;
     this.y = y !== undefined ? y : -20;
-    this.size = 4 + Math.random() * 8;
+    this.size = 6 + Math.random() * 12;
     this.speedY = burst ? -(5 + Math.random() * 10) : 1.5 + Math.random() * 3;
     this.speedX = burst ? (Math.random() - 0.5) * 12 : (Math.random() - 0.5) * 2;
     this.rotation = Math.random() * 360;
@@ -549,7 +549,7 @@ function startConfetti() {
 }
 
 function burstConfetti(x, y) {
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 200; i++) {
     confettiPieces.push(new ConfettiPiece(x, y, true));
   }
   if (!animationId) animateConfetti();
